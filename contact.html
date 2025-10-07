@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - My Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+  (function(){
+      emailjs.init("YOUR_PUBLIC_KEY_HERE");  
+  })();
+</script>
+
+<style>
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Mobile Navbar */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-links { display: none; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 10px; padding: 10px; }
+    .nav-links.active { display: flex; }
+}
+
+/* Dark Mode Classes (no text color overrides) */
+body.dark-mode {
+    background-color: #111;
+}
+body.dark-mode .navbar {
+    background-color: #222;
+}
+body.dark-mode .contact-container,
+body.dark-mode .contact-card,
+body.dark-mode .contact-form,
+body.dark-mode .map-container {
+    background-color: #222;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+}
+body.dark-mode input, body.dark-mode textarea {
+    background-color: #333;
+    border: 1px solid #555;
+}
+body.dark-mode .contact-btn {
+    background-color: #007BFF;
+    color: #fff;
+}
+body.dark-mode .contact-btn:hover {
+    background-color: #0056b3;
+}
+body.dark-mode footer {
+    background-color: #222;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">My Learning Journey</div>
+
+    <!-- Hamburger button -->
+    <button class="hamburger">☰</button>
+
+    <!-- Navigation links -->
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><button id="theme-toggle" class="btn small-btn">🌙</button></li>
+    </ul>
+
+    <div id="datetime" class="clock"></div>
+</nav>
+
+<!-- Contact Section -->
+<section class="section-container contact-section">
+    <div class="contact-container">
+        <h2>📩 Get in Touch</h2>
+        <p class="contact-intro">Feel free to reach out regarding teaching, technology, or collaborations!</p>
+
+        <div class="contact-info">
+            <div class="contact-card"><img src="email.png" alt="Email"><p>08230214.sce@rub.edu.bt</p></div>
+            <div class="contact-card"><img src="phone.webp" alt="Phone"><p>+975-77820243</p></div>
+        </div>
+
+        <div class="contact-buttons">
+            <a href="mailto:08230214.sce@rub.edu.bt" class="contact-btn">Send Email</a>
+            <a href="https://wa.me/97577820243" class="contact-btn" target="_blank">WhatsApp</a>
+            <a href="https://t.me/tenzinp2003" class="contact-btn" target="_blank">Telegram</a>
+            <a href="https://github.com/tenzinchoden915-cmyk/08230214_Lab02.git" class="contact-btn" target="_blank">GitHub</a>
+        </div>
+
+        <form id="contact-form" class="contact-form" novalidate>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <small class="error" id="name-error"></small>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <small class="error" id="email-error"></small>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            <small class="error" id="message-error"></small>
+            
+            <button type="submit">Send Message</button>
+            <p id="form-status"></p>
+        </form>
+
+        <div class="map-container">
+            <h3>📍 Samtse College of Education</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.2939240933074!2d89.1010!3d26.8980!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDUzJzUzLjciTiA4OcKwMDYnMTAuMCJF!5e0!3m2!1sen!2sbt!4v1690000000000"
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Tenzin Choden. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ===== Hamburger Menu =====
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+// ===== Dark/Light Mode =====
+const bodyEl = document.body;
+const toggleBtn = document.getElementById('theme-toggle');
+if(localStorage.getItem('theme') === 'dark'){ bodyEl.classList.add('dark-mode'); toggleBtn.textContent='☀️'; }
+toggleBtn.addEventListener('click', () => {
+    bodyEl.classList.toggle('dark-mode');
+    if(bodyEl.classList.contains('dark-mode')){ toggleBtn.textContent='☀️'; localStorage.setItem('theme','dark'); }
+    else { toggleBtn.textContent='🌙'; localStorage.setItem('theme','light'); }
+});
+
+// ===== Date & Time =====
+function updateDateTime() {
+    const now = new Date();
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const day = days[now.getDay()];
+    const date = now.getDate() < 10 ? '0'+now.getDate() : now.getDate();
+    const month = (now.getMonth()+1) < 10 ? '0'+(now.getMonth()+1) : (now.getMonth()+1);
+    const year = now.getFullYear();
+    const hours = now.getHours()<10?"0"+now.getHours():now.getHours();
+    const minutes = now.getMinutes()<10?"0"+now.getMinutes():now.getMinutes();
+    const seconds = now.getSeconds()<10?"0"+now.getSeconds():now.getSeconds();
+    document.getElementById("datetime").textContent = `${day}, ${date}/${month}/${year} | ${hours}:${minutes}:${seconds}`;
+}
+setInterval(updateDateTime,1000);
+updateDateTime();
+
+// ===== Contact Form Validation & EmailJS =====
+document.getElementById('contact-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    let isValid = true;
+
+    document.querySelectorAll(".error").forEach(el => el.textContent = "");
+    document.querySelectorAll(".error-field").forEach(el => el.classList.remove("error-field"));
+
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const message = document.getElementById("message");
+    const statusMsg = document.getElementById("form-status");
+
+    if(name.value.trim() === "") { document.getElementById("name-error").textContent = "Name is required."; name.classList.add("error-field"); isValid=false; }
+    if(email.value.trim() === "") { document.getElementById("email-error").textContent = "Email is required."; email.classList.add("error-field"); isValid=false; }
+    else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { document.getElementById("email-error").textContent = "Enter a valid email."; email.classList.add("error-field"); isValid=false; }
+    if(message.value.trim() === "") { document.getElementById("message-error").textContent = "Message cannot be empty."; message.classList.add("error-field"); isValid=false; }
+
+    if(!isValid) return;
+
+    const submitBtn = this.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    emailjs.sendForm('service_uzbd2zi', 'template_ua5waab', this)
+    .then(function(response){
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "green";
+        statusMsg.textContent = "✅ Your message has been sent successfully!";
+        document.getElementById('contact-form').reset();
+        setTimeout(() => { statusMsg.style.display = "none"; }, 5000);
+    }, function(error){
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "red";
+        statusMsg.textContent = "❌ Failed to send message. Please try again.";
+    }).finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+    });
+});
+</script>
+
+</body>
+</html>

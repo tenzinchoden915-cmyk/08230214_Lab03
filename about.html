@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Tenzin Choden</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    mark { background-color: yellow; color: black; }
+    .btn { padding: 0.5rem 1rem; cursor: pointer; }
+    .small-btn { font-size: 0.8rem; }
+    .dark-mode { background-color: #111; color: #eee; }
+    .dark-mode a { color: #ffd; }
+    
+    /* Hamburger CSS */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit; /* keeps current text color */
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links { display: none; flex-direction: column; gap: 0.5rem; }
+      .nav-links.active { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">My Learning Journey</div>
+
+    <!-- Hamburger button -->
+    <button class="hamburger">☰</button>
+
+    <!-- Navigation links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Theme toggle and clock -->
+    <button id="theme-toggle" class="btn small-btn">🌙</button>
+    <div id="datetime" class="clock"></div>
+  </nav>
+</header>
+
+<section class="section-container about-section">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="aboutme.jpg" alt="Tenzin Choden">
+    </div>
+
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p id="intro-text">
+        Hello! 👋 My name is <b>Tenzin Choden</b>, and I am currently pursuing a
+        <b>Bachelor of Education (B.Ed)</b> at <b>Samtse College of Education</b>.
+        I am deeply passionate about teaching, technology, and creativity, and
+        I believe in combining all three to make learning exciting and meaningful.
+        
+        My academic journey has taught me the importance of <i>adaptability</i> and
+        <i>lifelong learning</i>. I enjoy experimenting with web design,
+        database management, and programming, which I see as essential
+        tools to create modern and engaging learning experiences.  
+
+        Beyond my studies, I love taking part in collaborative projects that
+        allow me to learn from others and share my own ideas. I often spend time
+        exploring emerging technologies, reading educational blogs, and
+        building small projects to apply what I have learned in real life.  
+
+        My vision is to become an educator who inspires curiosity, builds confidence,
+        and integrates digital tools into classrooms to make education
+        <i>accessible, interactive, and fun for all learners</i>. ✨
+
+        Outside academics, I enjoy reading, designing creative layouts,
+        and working on personal growth. I see every new challenge as a step toward
+        becoming the kind of teacher who motivates students to not only gain
+        knowledge but also develop the courage to dream big.
+      </p>
+
+      <div style="margin-top:1.5rem;">
+        <button id="highlight-btn" class="btn small-btn">Highlight Keywords</button>
+        <div id="fun-fact-box" style="margin-top:1rem; font-style: italic; color: var(--secondary-color);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Tenzin Choden. All Rights Reserved.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ------------------ DARK/LIGHT MODE ------------------
+  const themeToggle = document.getElementById('theme-toggle');
+  if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
+
+  const applyTheme = () => {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    } else {
+      document.body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    }
+  };
+  applyTheme();
+
+  themeToggle.addEventListener('click', () => {
+    const current = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', current);
+    applyTheme();
+  });
+
+  // ------------------ HIGHLIGHT / UNDO ------------------
+  const highlightBtn = document.getElementById('highlight-btn');
+  const aboutText = document.getElementById('intro-text');
+  const funFactBox = document.getElementById('fun-fact-box');
+  const originalText = aboutText.innerHTML; 
+  let highlighted = false;
+
+  highlightBtn.addEventListener('click', () => {
+    const keywords = ['teaching','technology','creativity','learning','web design','programming','education','students'];
+    if (!highlighted) {
+      let html = originalText;
+      keywords.forEach(word => {
+        const regex = new RegExp(`\\b(${word})\\b`, 'gi');
+        html = html.replace(regex, '<mark>$1</mark>');
+      });
+      aboutText.innerHTML = html;
+      highlighted = true;
+      highlightBtn.textContent = 'Undo Highlight';
+      funFactBox.textContent = "✨ Keywords highlighted!";
+    } else {
+      aboutText.innerHTML = originalText; 
+      highlighted = false;
+      highlightBtn.textContent = 'Highlight Keywords';
+      funFactBox.textContent = "✨ Highlights removed!";
+    }
+  });
+
+  // ------------------ HAMBURGER MENU ------------------
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // ------------------ DATE & TIME ------------------
+  function updateDateTime() {
+    const now = new Date();
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const day = days[now.getDay()];
+    const date = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    const dateString = `${day}, ${date}/${month}/${year}`;
+
+    document.getElementById("datetime").innerHTML = `${dateString} | ${timeString}`;
+  }
+
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+
+});
+</script>
+
+</body>
+</html>

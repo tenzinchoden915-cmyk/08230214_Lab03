@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    // This script redirects the broken URL back to the base path,
+    // allowing your JavaScript router to load the correct section.
+    // pathSegmentsToKeep is 1 because your site is in the sub-folder '/08230214_Lab03/'
+    var pathSegmentsToKeep = 1; 
+
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=' +
+      l.pathname.slice(1).split('&').join('~') +
+      (l.search ? '&q=' + l.search.slice(1).split('&').join('~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body>
+</body>
+</html>

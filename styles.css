@@ -1,0 +1,1176 @@
+/* 1. Global Styles and Custom Properties (CSS Variables) */
+:root {
+    --primary-color: #ff7eb3;       /* Sweet pink */
+    --secondary-color: #ff758c;     /* Soft coral */
+    --dark-bg: #333;
+    --light-text: #fff;
+    --card-bg: #ffffff;
+    --border-radius-lg: 15px;
+    --transition-speed: 0.4s;
+
+    /* Bright & sweet gradient background */
+    --gradient-bg: linear-gradient(135deg, #fbc2eb, #a6c1ee, #fddb92, #d1fdff);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body background with animation + Poppins font */
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gradient-bg);
+    background-size: 300% 300%;
+    animation: gradientShift 20s ease infinite;
+    color: var(--dark-bg);
+    line-height: 1.7;
+    min-height: 150vh;  
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-speed) ease;
+    padding-bottom: 5rem; 
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ---------------------------------- */
+/* Section container (Desktop Styles) */
+.section-container {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    padding: 3rem;
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 1200px;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: smoothFadeUp 1s ease-out forwards;
+}
+.section-container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings (Desktop Styles) */
+h1, h2, h3 {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+h1 { font-size: 2.8rem; font-weight: 800; }
+h2 { font-size: 2.2rem; font-weight: 700; }
+h3 { font-size: 1.5rem; font-weight: 600; }
+
+p {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+p strong { font-weight: 700; color: var(--secondary-color); }
+
+/* ---------------------------------- */
+/* Navigation Bar (Desktop Styles) */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    transition: all var(--transition-speed) ease;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-bg);
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color var(--transition-speed) ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease-in-out;
+}
+
+.nav-links a:hover { color: var(--primary-color); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links .active { color: var(--primary-color); font-weight: bold; }
+/* ---------------------------------- */
+/* Buttons (Desktop Styles) */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.5s ease;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(255, 118, 165, 0.3);
+}
+.btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    transform: translateY(-5px) scale(1.07);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* ---------------------------------- */
+/* About Section (Desktop Styles) */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: smoothFadeUp 1s ease-out forwards;
+}
+
+.about-image { flex: 1 1 300px; text-align: center; }
+.about-image img {
+    width: 280px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.about-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+.about-text { flex: 2 1 500px; text-align: left; }
+.about-text h2 { text-align: left; margin-bottom: 1rem; }
+.about-text p { text-align: justify; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8; }
+
+/* ---------------------------------- */
+/* Education Section (Desktop Styles) */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: smoothFadeUp 1s ease-out forwards;
+}
+.education-box {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    text-align: center;
+}
+.education-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.education-box h3 { color: var(--primary-color); margin: 1rem 0; }
+.edu-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background: #f9f9f9;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.education-box:hover .edu-logo { transform: scale(1.1); }
+/* ---------------------------------- */
+/* Projects Section (Desktop Styles) */
+.projects-section { text-align: center; opacity: 0; transform: translateY(20px); animation: smoothFadeUp 1s ease-out forwards; }
+.projects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+.projects-list li {
+    background: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.projects-list li:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+.projects-list img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+.projects-list li:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.85);
+}
+.projects-list strong {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin: 1rem 0 0.5rem;
+    position: relative;
+}
+.projects-list strong::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 0.5rem auto 0;
+    border-radius: 3px;
+}
+.projects-list p {
+    padding: 0 1rem 1.2rem;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* ---------------------------------- */
+/* Skills Section (Desktop Styles) */
+.skills-section h2 { color: var(--primary-color); margin-bottom: 2rem; font-size: 2.2rem; }
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: smoothFadeUp 1s ease-out forwards;
+}
+.skill-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 2rem 1.5rem;
+    width: 100%;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    text-align: center;
+}
+.skill-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+.skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+.skill-box {
+    background: var(--gradient-bg);
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease, filter 0.4s ease;
+}
+.skill-box img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    transition: transform 0.4s ease;
+}
+.skill-box p {
+    font-weight: 600;
+    color: var(--dark-bg);
+    font-size: 0.9rem;
+}
+.skill-box:hover {
+    animation: bounceGlow 0.6s forwards;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+.skill-box:hover img { transform: rotate(15deg) scale(1.2); }
+.skill-box:hover p { color: var(--light-text); }
+.skill-box.soft { background: #f5f5f5; }
+.skill-box.soft:hover { background: linear-gradient(135deg, #ffd3a5, #fd6585); color: var(--light-text); }
+
+@keyframes bounceGlow {
+    0% { transform: translateY(0); box-shadow: 0 6px 15px rgba(0,0,0,0.1); filter: brightness(1); }
+    30% { transform: translateY(-12px); box-shadow: 0 12px 25px rgba(0,0,0,0.2); filter: brightness(1.1); }
+    50% { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(0,0,0,0.18); filter: brightness(1.05); }
+    70% { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.2); filter: brightness(1.1); }
+    100% { transform: translateY(0); box-shadow: 0 6px 15px rgba(0,0,0,0.15); filter: brightness(1); }
+}
+/* ---------------------------------- */
+/* Footer (Desktop Styles) */
+footer {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--light-text);
+    background-color: var(--primary-color);
+    margin-top: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: smoothFadeUp 1s ease-out forwards;
+}
+
+/* ---------------------------------- */
+/* Preloader (Keep this as is, assuming JS handles the hide functionality) */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f0e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-in-out;
+}
+.loading-bar-container {
+    width: 300px;
+    height: 40px;
+    border: 2px solid #5d4a3b;
+    border-radius: 20px;
+    background-color: #e5d8c8;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.loading-bar {
+    position: relative;
+    height: 100%;
+    width: 0;
+    background-color: #a0846e;
+    border-radius: 20px;
+    /* Reduced transition speed for a smoother hide and less overflow issue */
+    transition: width 1.5s ease-out; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5d4a3b;
+    font-weight: 600;
+}
+.bear-icon {
+    position: absolute;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    background-image: url("welcome.jpg");
+    background-size:contain;
+    background-repeat: repeat;
+    background-position:var(--primary-color);
+    animation: bearMove 1s linear forwards;
+}
+.loading-bar span {
+    position: absolute;
+    color: #5d4a3b;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+}
+@keyframes bearMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(250px); }
+}
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; /* Ensure it is fully hidden */
+}
+
+/* ---------------------------------- */
+/* General Styles (Combined from your duplicates) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff5f8;
+}
+
+.navbar .logo {
+    color: rgb(252, 114, 178);
+    font-weight: bold;
+    font-size: 25px;
+}
+.navbar .nav-links li a {
+    color: rgb(12, 0, 6);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.section-container {
+    max-width: 950px;
+    margin: auto;
+}
+
+.contact-container h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: rgb(252, 114, 178);
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 35px;
+    color: #333;
+}
+
+/* --- Contact Info Cards (Desktop) --- */
+.contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+.contact-card {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 15px;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card img {
+    width: 28px;
+    height: 28px;
+}
+
+.contact-card p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* --- Buttons (Desktop) --- */
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #f58bc5;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #f16bd0;
+    transform: translateY(-2px);
+}
+
+/* --- Contact Form Card (Desktop) --- */
+.contact-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    margin-bottom: 40px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.contact-form button {
+    margin-top: 15px;
+    padding: 14px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* --- Map Card (Desktop) --- */
+.map-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.map-container h3 {
+    color: rgb(252, 114, 178);
+    margin-bottom: 15px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    border: 0;
+}
+
+/* --- Social Links (Desktop) --- */
+.social-links {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.social-links a img {
+    width: 45px;
+    height: 45px;
+    transition: transform 0.3s;
+}
+
+.social-links a img:hover {
+    transform: scale(1.2);
+}
+
+/* --- Animations --- */
+@keyframes smoothFadeUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional word-by-word fade-in (requires JS or manual spans) */
+h1 span, h2 span, h3 span, p span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: wordFadeUp 0.8s ease-out forwards;
+}
+@keyframes wordFadeUp {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------- */
+/* ===================================================
+   CONSOLIDATED FINAL MOBILE LAYOUT FIX
+   This single block handles all responsiveness up to 768px.
+=================================================== */
+
+@media (max-width: 768px) {
+    
+    /* CRITICAL GLOBAL FIXES */
+    html, body {
+        overflow-x: hidden !important; 
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+    .section-container { 
+        padding: 1.5rem 0.5rem !important; /* Minimal card padding */
+        margin: 2rem auto !important; 
+        width: 98% !important; 
+        max-width: 100% !important;
+    }
+
+    /* TYPOGRAPHY ADJUSTMENTS (Guaranteed Wrapping) */
+    h1 { 
+        /* FINAL SIZE: Must be small to ensure "Tenzin Choden" fits and wraps */
+        font-size: 1.4rem !important; 
+        line-height: 1.2 !important;
+        margin-bottom: 0.5rem !important;
+        white-space: normal !important; /* CRITICAL: Forces text to wrap */
+        word-break: break-word !important; 
+    } 
+    h2 { 
+        font-size: 1.3rem !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+    h3 { font-size: 1.2rem; }
+    p { 
+        font-size: 1rem; 
+        text-align: left !important;
+        padding: 0 0.2rem;
+    }
+
+    /* 1. NAVIGATION BAR (Clean, Compact Look) */
+    .navbar { 
+        flex-direction: column !important;
+        align-items: center !important; 
+        gap: 0.3rem !important; 
+        padding: 0.8rem 0.5rem !important;
+        border-radius: 0;
+    }
+    .logo { font-size: 1.6rem !important; }
+    .nav-links { 
+        display: flex !important; 
+        flex-wrap: nowrap !important; 
+        justify-content: center !important; 
+        gap: 0.7rem !important; 
+        overflow-x: auto;
+        white-space: nowrap !important; 
+        width: 100% !important; 
+    }
+    .nav-links a { font-size: 0.85rem !important; }
+
+    /* 2. ABOUT/HERO SECTION (Stacking and Centering) */
+    .about-container, .hero-content { 
+        flex-direction: column !important;
+        text-align: center !important; 
+        gap: 1rem; 
+        width: 100%;
+        margin: 0 auto;
+    }
+    .about-text, .hero-text-area { 
+        text-align: center !important; 
+        min-width: 0;
+        padding: 0 !important; /* NO PADDING ON TEXT CONTAINERS */
+    }
+    .about-image img, .hero-image img {
+        width: 100% !important; 
+        max-width: 280px !important; 
+        height: auto !important; 
+        margin: 0 auto;
+    }
+    
+    /* 3. Button Styling (Stacking and Sizing) */
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem;
+        margin: 1rem auto 0;
+    }
+    .btn, .contact-btn { /* Apply to all buttons */
+        width: 85% !important;
+        max-width: 250px !important;
+        padding: 0.7rem 1.5rem !important;
+        font-size: 0.85rem !important;
+        white-space: normal; /* Allow button text to wrap */
+    }
+    /* Contact buttons stacking */
+    .contact-buttons { flex-direction: column; gap: 10px; }
+
+
+    /* 4. Grid Adjustments */
+    .education-grid, .projects-list, .skills-grid { 
+        grid-template-columns: 1fr;
+        gap: 2rem; 
+    }
+
+    /* 5. Footer & Contact */
+    footer { 
+        padding: 1rem 0.5rem !important; 
+        font-size: 0.9rem;
+        text-align: center;
+        word-break: break-word;
+        white-space: normal !important; 
+    }
+    .contact-info { flex-direction: column; gap: 10px; }
+    .contact-card { width: 100%; justify-content: center; }
+    .map-container iframe { height: 250px; }
+}
+/* ===============================
+   FIX: Ensure all text is visible
+   without changing other styles
+=============================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* already present but reaffirming */
+}
+
+body, html {
+    overflow-x: hidden; /* prevent horizontal cutoff */
+}
+
+h1, h2, h3, p, .btn, .contact-btn, .section-container, .about-text, .projects-list li, .skill-box, .contact-form, .map-container iframe {
+    word-wrap: break-word; /* wrap long words */
+    overflow-wrap: break-word; /* wrap overflowing words */
+    hyphens: auto; /* optional: breaks long words if needed */
+}
+
+.section-container, .about-text, .projects-section, .skills-section, .contact-form {
+    min-width: 0; /* prevent flex/grid children from cutting off */
+}
+
+.nav-links, .contact-buttons, .social-links {
+    overflow-x: auto; /* allow horizontal scrolling if needed */
+    white-space: normal; /* allow wrapping if space permits */
+}
+
+.btn, .contact-btn {
+    white-space: normal !important; /* force button text to wrap if long */
+}
+
+/* For mobile screens specifically */
+@media (max-width: 768px) {
+    h1, h2, h3, p {
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+
+    .section-container, .about-text, .projects-list li, .skill-box, .contact-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .nav-links, .contact-buttons {
+        flex-wrap: wrap !important;
+        overflow-x: visible !important;
+    }
+
+    .about-image img, .hero-image img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+/* ===================================================
+ * LAB 03 - REQUIRED STYLES FOR JAVASCRIPT INTERACTIVITY
+ * These rules are placed last to ensure they override any conflicting base styles.
+ * ===================================================
+ */
+
+/* ---------------------------------------------------
+ * A. CSS VARIABLES FOR THEME SWITCHING 
+ * ---------------------------------------------------
+ */
+
+:root {
+    /* LIGHT MODE DEFAULTS */
+    --clr-bg-primary: #ffffff; 
+    --clr-bg-secondary: #f9f9f9;
+    --clr-text: #333333;
+    --clr-accent: #FF69B4; /* Your signature pink */
+    --clr-nav-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* DARK MODE OVERRIDES (Toggled by JS on body.dark-mode) */
+body.dark-mode {
+    --clr-bg-primary: #121212;
+    --clr-bg-secondary: #1e1e1e;
+    --clr-text: #f0f0f0;
+    --clr-nav-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Apply variables and transition for smooth theme change */
+body, .navbar, .section-container, footer {
+    background-color: var(--clr-bg-primary);
+    color: var(--clr-text);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Ensure text elements inherit or use the correct color */
+.navbar .logo, .nav-links a, footer p, h1, h2, p {
+    color: var(--clr-text) !important;
+}
+
+
+/* ---------------------------------------------------
+ * B. ICON AND PRELOADER STYLES (Desktop/Default)
+ * ---------------------------------------------------
+ */
+
+/* Hamburger: MUST BE HIDDEN on large screens (desktop) */
+.hamburger {
+    display: none !important; 
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Theme Switcher Position (Desktop Fix) */
+.theme-icon {
+    position: absolute; 
+    right: 200px; /* Moves it far from the Contact link */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--clr-accent);
+    z-index: 1001;
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.theme-icon:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Hide preloader after JS removes the class */
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0s 0.5s;
+}
+
+/* ---------------------------------------------------
+ * C. Media Query for Mobile Layout (e.g., screens under 900px)
+ * ---------------------------------------------------
+ */
+
+@media (max-width: 900px) {
+    
+    /* Show the hamburger button on mobile */
+    .hamburger {
+        display: block !important; 
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin-right: 70px; 
+    }
+
+    /* Hide the desktop links by default on mobile */
+    .nav-links {
+        display: none !important;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on your navbar height */
+        left: 0;
+        background-color: var(--clr-bg-secondary);
+        z-index: 999;
+        box-shadow: 0 4px 6px var(--clr-nav-shadow);
+        border-top: 1px solid var(--clr-text);
+    }
+
+    /* JS toggles this class to show the menu */
+    .nav-links.active {
+        display: flex !important;
+    }
+    
+    /* Reposition theme switcher on mobile */
+    .theme-icon {
+        right: 10px; /* Move it to the edge */
+    }
+
+    /* Adjust main content stacking */
+    .about-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .about-image {
+        margin-bottom: 20px;
+    }
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+body.dark-mode .navbar { background-color: #1f1f1f; }
+body.dark-mode .nav-links a { color: #f0f0f0; }
+body.dark-mode .education-box, 
+body.dark-mode .projects-box, 
+body.dark-mode .skill-box { 
+    background-color: #1e1e1e; 
+    color: #f0f0f0; 
+    border: 1px solid #333; 
+}
+
+body.dark-mode .btn, body.dark-mode select { 
+    background-color: #333; 
+    color: #f0f0f0; 
+    border: 1px solid #555; 
+}
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+body.dark-mode a {
+    color: #ffb347; /* links in dark mode */
+}
+
+body.dark-mode .navbar {
+    background-color: #333;
+}
+
+/* Add other sections like footer, cards, etc. */
+/* Keep headings same color in both light and dark mode */
+h1, h2, h3, h4, h5, h6,
+.projects-list li strong {
+  color: #e00c81 !important;
+}
+
+/* ============================= */
+/* Dark Mode Overrides */
+/* ============================= */
+body.dark-mode {
+    background: #111 !important;
+    color: #eee !important;
+    animation: none; /* optional: stop gradient animation in dark mode */
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+    background-color: #222 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode .nav-links a {
+    color: #eee !important;
+}
+body.dark-mode .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Section containers */
+body.dark-mode .section-container {
+    background-color: #222 !important;
+    color: #eee !important;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
+
+/* Headings */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: var(--secondary-color) !important;
+}
+
+/* Buttons */
+body.dark-mode .btn {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #fff;
+}
+body.dark-mode .btn:hover {
+    background-color: transparent;
+    color: var(--secondary-color);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+body.dark-mode {
+    background: #111 !important;
+    color: #eee !important;
+    animation: none !important;
+}
+
+body.dark-mode .section-container {
+    background-color: #222 !important;
+    color: #eee !important;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: var(--secondary-color) !important;
+}
+
+body.dark-mode .navbar {
+    background-color: #222 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode .nav-links a {
+    color: #eee !important;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+body.dark-mode .btn,
+body.dark-mode #theme-toggle {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    color: #fff !important;
+}
+
+body.dark-mode .btn:hover {
+    background-color: transparent !important;
+    color: var(--secondary-color) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6) !important;
+}
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 25px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  border-radius: 12px; /* rounded corners */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-explore {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* purple to blue */
+}
+
+.btn-resume {
+  background: linear-gradient(135deg, #ff512f, #dd2476); /* orange to pink */
+}
+
+.btn-cv {
+  background: linear-gradient(135deg, #11998e, #38ef7d); /* teal to green */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+/* Navbar basics */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 10px 20px;
+}
+
+.navbar .logo {
+  color: #e62857;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+.nav-links li a {
+  color: #d11573;
+  text-decoration: none;
+}
+
+/* Hamburger hidden by default */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fd679c;
+  cursor: pointer;
+}
+
+/* ===============================
+   Hamburger Menu Text Color Fix
+=============================== */
+
+/* Mobile view: light mode */
+@media (max-width: 600px) {
+  .nav-links {
+    display: none;             /* hidden initially */
+    flex-direction: column;
+    width: 100%;
+    background: #333;          /* dark background */
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .nav-links li a {
+    color: #ffffff !important; /* white text for visibility */
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .nav-links.active {
+    display: flex;             /* show when toggled */
+  }
+
+  .hamburger {
+    display: block;            /* show hamburger button */
+    color: #fd679c;            /* your existing hamburger color */
+  }
+}
+
+/* Dark mode overrides */
+body.dark-mode .nav-links {
+  background: #222;             /* darker for dark mode */
+}
+
+body.dark-mode .nav-links li a {
+  color: #ffffff !important;    /* keep links visible */
+}

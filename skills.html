@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills - My Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #222;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.dark-mode { background-color: #111; color: #eee; }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    gap: 0.5rem;
+  }
+  .logo { font-weight: bold; font-size: 1.2rem; }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  .nav-links li { margin: 0; }
+  .nav-links a {
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+  .nav-links a.active { font-weight: bold; background-color: #007BFF; color: #fff; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-links { display: none; flex-direction: column; gap: 5px; width: 100%; }
+    .nav-links.active { display: flex; }
+  }
+
+  #theme-toggle { cursor: pointer; background: transparent; border: none; font-size: 1.2rem; color: inherit; }
+  #skill-search { padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+
+  /* Skills Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .skill-card {
+    padding: 1rem;
+    border-radius: 10px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, background 0.3s, color 0.3s;
+  }
+  .skill-card:hover { transform: translateY(-5px); }
+  .skill-items { display: grid; gap: 1rem; }
+  .skill-box {
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  }
+  .skill-box img { max-width: 70px; margin-bottom: 0.5rem; }
+  .hidden { display: none; }
+
+  body.dark-mode .skill-card { background: #222; color: #eee; box-shadow: 0 4px 8px rgba(255,255,255,0.1); }
+  body.dark-mode .skill-box { background: #333; color: #eee; box-shadow: 0 2px 5px rgba(255,255,255,0.1); }
+  body.dark-mode input { background: #222; color: #eee; border: 1px solid #444; }
+
+  footer { padding: 15px; text-align: center; background-color: #333; color: #fff; }
+  body.dark-mode footer { background-color: #111; color: #eee; }
+
+  @media (max-width: 600px) { #skill-search { width: 100%; margin-top: 5px; } }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">My Learning Journey</div>
+  <button class="hamburger">☰</button>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="skills.html" class="active">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><input type="text" id="skill-search" placeholder="Search a skill..."></li>
+    <li><button id="theme-toggle">🌙</button></li>
+  </ul>
+
+  <div id="datetime" class="clock"></div>
+</nav>
+
+<section class="section-container skills-section">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <!-- Technical Skills Card -->
+    <div class="skill-card">
+      <h3>Technical Skills</h3>
+      <div class="skill-items">
+        <div class="skill-box"><img src="HTML5.jpg" alt="HTML"><p><strong>HTML5</strong></p></div>
+        <div class="skill-box"><img src="CSS.jpg" alt="CSS"><p><strong>CSS3</strong></p></div>
+        <div class="skill-box"><img src="javascript.jpg" alt="JavaScript"><p><strong>JavaScript</strong></p></div>
+        <div class="skill-box"><img src="React.png" alt="React"><p><strong>React</strong></p></div>
+        <div class="skill-box"><img src="python.png" alt="Python"><p><strong>Python</strong></p></div>
+      </div>
+    </div>
+    <!-- Soft Skills Card -->
+    <div class="skill-card">
+      <h3>Soft Skills</h3>
+      <div class="skill-items">
+        <div class="skill-box soft"><img src="problemsolving.png" alt="Problem Solving"><p><strong>Problem Solving</strong></p></div>
+        <div class="skill-box soft"><img src="teamwork.jpg" alt="Teamwork"><p><strong>Teamwork</strong></p></div>
+        <div class="skill-box soft"><img src="communication.jpg" alt="Communication"><p><strong>Communication</strong></p></div>
+        <div class="skill-box soft"><img src="timemanagement.png" alt="Time Management"><p><strong>Time Management</strong></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Tenzin Choden. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Hamburger toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+  // Dark/Light Mode
+  const themeToggle = document.getElementById('theme-toggle');
+  const applyTheme = () => {
+    if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark-mode'); themeToggle.textContent='☀️'; }
+    else { document.body.classList.remove('dark-mode'); themeToggle.textContent='🌙'; }
+  };
+  if(!localStorage.getItem('theme')) localStorage.setItem('theme','light');
+  applyTheme();
+  themeToggle.addEventListener('click', () => {
+    localStorage.setItem('theme', localStorage.getItem('theme')==='dark'?'light':'dark');
+    applyTheme();
+  });
+
+  // Skill search
+  const skillSearch = document.getElementById("skill-search");
+  skillSearch.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll(".skill-box").forEach(box => {
+      box.classList.toggle("hidden", !box.innerText.toLowerCase().includes(query));
+    });
+  });
+
+  // Date & Time
+  function updateDateTime() {
+    const now = new Date();
+    const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const day = days[now.getDay()];
+    const date = now.getDate();
+    const month = now.getMonth()+1;
+    const year = now.getFullYear();
+    const hours = now.getHours().toString().padStart(2,'0');
+    const minutes = now.getMinutes().toString().padStart(2,'0');
+    const seconds = now.getSeconds().toString().padStart(2,'0');
+    document.getElementById("datetime").textContent = `${day}, ${date}/${month}/${year} | ${hours}:${minutes}:${seconds}`;
+  }
+  setInterval(updateDateTime,1000);
+  updateDateTime();
+</script>
+
+</body>
+</html>
